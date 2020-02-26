@@ -1,27 +1,20 @@
+import json
+import nltk
+
 def read_data(filename):
-	import json
 	doc = []
-	img_count = 0
-	anno_count = 0
 	with open(filename) as f:
 		data = json.load(f)
 		for i, img in enumerate(data):
-			img_count += 1
 			doc.append([img['img_id']])
 			for e in img['sentences']:
-				anno_count += 1
 				doc[i].append([extract_verbs(e)])
-			# if (i == 3):
-			# 	break
-	f.close()	
+	f.close()
 
-	# print (img_count)
-	# print (anno_count)
-	# print (doc)
+	return doc	
 	
 
 def extract_verbs(sentence):
-	import nltk
 	ret = []
 	tokens = nltk.word_tokenize(sentence)
 	tagged = nltk.pos_tag(tokens)
@@ -31,8 +24,22 @@ def extract_verbs(sentence):
 
 	return ret
 
+
+def write_data(doc):
+	doc_list = []
+
+	for k in doc:
+		doc_list.append({'img_id': k[0], 'verbs': k[1]})
+
+	with open('../annotated_data/annotated_verbs/val.json', 'w') as output_file:
+		json.dump(doc_list, output_file)
+
+	output_file.close()
+
+
 def main():
-	read_data('../data/annotations/val.json')
+	doc = read_data('../data/annotations/val.json')
+	write_data(doc)
 
 if __name__ == '__main__':
 	main()

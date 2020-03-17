@@ -1,0 +1,6 @@
+ltk_data] Downloading package wordnet to /home/qiuyiqin/nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+/home/qiuyiqin/.conda/envs/torch/lib/python3.7/site-packages/torch/nn/functional.py:1351: UserWarning: nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.
+  warnings.warn("nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.")
+/home/qiuyiqin/DUDA_model.py:85: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  a_t = F.softmax(self.wd2(self.h_da))

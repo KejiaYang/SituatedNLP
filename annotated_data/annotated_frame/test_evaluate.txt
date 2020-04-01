@@ -1,0 +1,40 @@
+Number of sentences per image pair:
+1: 867
+2: 418
+3: 83
+4: 26
+5: 9
+6: 1
+Number of subjects per image pair:
+0: 506
+1: 557
+2: 242
+3: 59
+4: 27
+5: 9
+6: 2
+7: 2
+Number of verbs per image pair:
+0: 7
+1: 841
+2: 420
+3: 100
+4: 25
+5: 9
+6: 2
+Number of objects per image pair:
+0: 270
+1: 389
+2: 301
+3: 147
+4: 112
+5: 74
+6: 50
+7: 26
+8: 15
+9: 12
+10: 1
+11: 3
+12: 1
+14: 1
+15: 2

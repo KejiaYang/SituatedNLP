@@ -37,6 +37,7 @@ for mode in mode_list:
                     idx2word[n]=word
                     n+=1
 print(lens)
+print(max(lens))
                     
 # output_name = 'word_list.pkl'
 # with open(output_name, 'wb') as f:

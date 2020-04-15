@@ -11,6 +11,7 @@ import re
 import csv
 import pandas as pd
 import pickle
+import json
 
 import nltk
 from nltk.corpus import verbnet
@@ -19,6 +20,18 @@ from nltk.stem.wordnet import WordNetLemmatizer
 import pyLDAvis.gensim
 import pickle 
 import pyLDAvis
+
+
+def read_data(filename):
+    doc = []
+    with open(filename) as f:
+        data = json.load(f)
+        for i in data:
+            for e in i['sentences']:
+                doc.append(e)
+    f.close()
+    
+    return doc
 
 
 def read_content(filename):
@@ -124,8 +137,8 @@ def train(dictionary, corpus,num_topics,docs):
     return (model,id2word)
 
 
-docs = read_content('../verbNet/model_prediction.pkl')
-# print(docs)
+docs = read_data('train.json')
+docs = tokenize(docs)
 docs = lemmatize(docs)
 docs = compute_bigrams(docs)
 dictionary = remove_rare_common_words(docs)

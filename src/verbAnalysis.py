@@ -12,22 +12,40 @@ def read_data(filename):
     return data
 
 
-def countCate(doc):
+def countCate(doc, score):
     wordCate = {}
     numCate = {}
+    wordScore = {}
+    numScore = {}
+    i = 0
     for d in doc:
         for w in d:
             for at in w[1]:
                 if (at[0] in wordCate):
                     wordCate[at[0]] += 1
+                    wordScore[at[0]] += score[i]
                 else:
                     wordCate[at[0]] = 1
+                    wordScore[at[0]] = score[i]
                 if (at[1] in numCate):
                     numCate[at[1]] += 1
+                    numScore[at[1]] += score[i]
                 else:
                     numCate[at[1]] = 1
-                
-    return wordCate, numCate
+                    numScore[at[1]] = score[i]
+        i += 1
+        
+        
+    for k, v in wordScore.items():
+        wordScore[k] = v / wordCate[k]
+        
+    for k, v in numScore.items():
+        numScore[k] = v / numCate[k]
+    
+#     print(wordScore)
+#     print(numScore)
+
+    return wordCate, numCate, wordScore, numScore
 
 
 def plotDiagReverse(dictionary):
@@ -69,8 +87,17 @@ def plotDiag(dictionary):
 
 
 doc = read_data('verbNet.pkl')
-wordCate, numCate = countCate(doc)
-plotDiagReverse(wordCate)
-plotDiagReverse(numCate)
-plotDiag(wordCate)
-plotDiag(numCate)
+print(doc)
+# print(doc)
+score = read_data('meteor.pkl')
+wordCate, numCate, wordScore, numScore = countCate(doc, score)
+# plotDiagReverse(wordCate)
+# plotDiagReverse(numCate)
+# plotDiag(wordCate)
+# plotDiag(numCate)
+
+
+# plotDiagReverse(numScore)
+# plotDiag(numScore)
+# plotDiagReverse(wordScore)
+# plotDiag(wordScore)
